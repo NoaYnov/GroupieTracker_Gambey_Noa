@@ -10,14 +10,14 @@ import (
 )
 
 type Bokoblin struct {
-	Data struct {
-		Category        string      `json:"category"`
-		CommonLocations interface{} `json:"common_locations"`
-		Description     string      `json:"description"`
-		Drops           []string    `json:"drops"`
-		ID              int         `json:"id"`
-		Image           string      `json:"image"`
-		Name            string      `json:"name"`
+	Data []struct {
+		Category        string   `json:"category"`
+		CommonLocations []string `json:"common_locations"`
+		Description     string   `json:"description"`
+		Drops           []string `json:"drops"`
+		ID              int      `json:"id"`
+		Image           string   `json:"image"`
+		Name            string   `json:"name"`
 	} `json:"data"`
 	Bokob      *Bokoblin
 	Formulaire string
@@ -42,7 +42,7 @@ func (b *Bokoblin) OpenPage(w http.ResponseWriter, r *http.Request) {
 }
 
 func (b *Bokoblin) Boko() *Bokoblin {
-	url := "https://botw-compendium.herokuapp.com/api/v2/entry/1"
+	url := "https://botw-compendium.herokuapp.com/api/v2/category/monsters"
 
 	timeClient := http.Client{
 		Timeout: time.Second * 2,

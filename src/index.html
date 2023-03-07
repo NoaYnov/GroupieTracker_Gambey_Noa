@@ -15,19 +15,23 @@
     </form>
         
     <h1>My First Heading</h1>
-    {{range $v := .Bokob.Data}}
-    <div class="card">
-        <div  class="title">
-            <h1>{{$v.Name}}</h1>
+    
+    <div class="place">
+        {{range $v := .Bokob.Data}}
+        <div class="card">
+            <div  class="title">
+                <h1>{{$v.Name}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            
         </div>
-        <div>
-            <img src={{$v.Image}} alt="" class="image_mob">
-        </div>
-        <div>
-            <h1>{{$v.De}}</h1>
-        </div>
-        
+        {{end}}
     </div>
-    {{end}}
+    
 </body>
 </html>

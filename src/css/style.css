@@ -28,8 +28,7 @@ body{
     margin: 20px;
     width: 200px;
     height: 295px;
-    display: flex;
-    flex-direction: column;
+    align-items: center;
     font-size: 50%;
     text-align: center;
     overflow: hidden;
@@ -40,10 +39,19 @@ body{
     transform: scale(1.05);
     transition: all 0.5s ease;
     height: auto;
-    
 }
 
 .title{
     font-size: 150%;
     font-weight: bold;
+}
+
+.place{
+
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+
 }
