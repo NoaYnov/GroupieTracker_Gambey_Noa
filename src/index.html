@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Document</title>
 </head>
 <body>
-    {{Moblin.Data.Image}}
+    <form>
+
+        <label for="nom">Nom :</label>
+        <input type="text" name="nom" required>
+    </form>
+        
+    <h1>My First Heading</h1>
+    {{if eq .Formulaire "moblin"}}
+    <div class="card">
+        <div  class="title">
+            <h1>{{.Bokob.Data.Name}}</h1>
+        </div>
+        <div>
+            <img src={{.Bokob.Data.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{.Bokob.Data.Description}}</h1>
+        </div>
+        
+    </div>
+    {{else}}
+    <h1>Erreur</h1>
+
+    {{end}}
 </body>
 </html>
