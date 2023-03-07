@@ -15,22 +15,19 @@
     </form>
         
     <h1>My First Heading</h1>
-    {{if eq .Formulaire "moblin"}}
+    {{range $v := .Bokob.Data}}
     <div class="card">
         <div  class="title">
-            <h1>{{.Bokob.Data.Name}}</h1>
+            <h1>{{$v.Name}}</h1>
         </div>
         <div>
-            <img src={{.Bokob.Data.Image}} alt="" class="image_mob">
+            <img src={{$v.Image}} alt="" class="image_mob">
         </div>
         <div>
-            <h1>{{.Bokob.Data.Description}}</h1>
+            <h1>{{$v.De}}</h1>
         </div>
         
     </div>
-    {{else}}
-    <h1>Erreur</h1>
-
     {{end}}
 </body>
 </html>

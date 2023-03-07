@@ -41,8 +41,8 @@ func (b *Bokoblin) OpenPage(w http.ResponseWriter, r *http.Request) {
 	tmp.Execute(w, details)
 }
 
-func (a *Bokoblin) Boko() *Bokoblin {
-	url := "https://botw-compendium.herokuapp.com/api/v2/master_mode/entry/golden_bokoblin"
+func (b *Bokoblin) Boko() *Bokoblin {
+	url := "https://botw-compendium.herokuapp.com/api/v2/entry/1"
 
 	timeClient := http.Client{
 		Timeout: time.Second * 2,
