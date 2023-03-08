@@ -8,16 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-
-        <label for="nom">Nom :</label>
-        <input type="text" name="nom" required>
-    </form>
+    <div class="hotbar">
         
-    <h1>My First Heading</h1>
-    
+    </div>
+
     <div class="place">
         {{range $v := .Bokob.Data}}
+        
         <div class="card">
             <div  class="title">
                 <h1>{{$v.Name}}</h1>
@@ -32,6 +29,10 @@
         </div>
         {{end}}
     </div>
+
+    
+
+
     
 </body>
 </html>
