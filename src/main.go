@@ -23,8 +23,21 @@ type Bokoblin struct {
 		Type            string
 	} `json:"data"`
 	Formulaire string
-	Type_mob   []string
+	Typ        *Mob
 	Bokob      *Bokoblin
+	Capa       string
+}
+
+type Mob struct {
+	Data struct {
+		Category        string   `json:"category"`
+		CommonLocations []string `json:"common_locations"`
+		Description     string   `json:"description"`
+		Drops           []string `json:"drops"`
+		ID              int      `json:"id"`
+		Image           string   `json:"image"`
+		Name            string   `json:"name"`
+	} `json:"data"`
 }
 
 func main() {
@@ -42,9 +55,11 @@ func (b *Bokoblin) OpenPage(w http.ResponseWriter, r *http.Request) {
 	details := Bokoblin{
 		Bokob:      b.Boko(),
 		Formulaire: r.FormValue("nom"),
-		Type_mob:   b.type_mob(),
+		Typ:        b.type_mob(),
+		Capa:       r.FormValue("information"),
 	}
 	tmp.Execute(w, details)
+	fmt.Println(r.FormValue("information"))
 }
 
 func (b *Bokoblin) Boko() *Bokoblin {
@@ -73,16 +88,50 @@ func (b *Bokoblin) Boko() *Bokoblin {
 	if Jsonerr != nil {
 		fmt.Println(Jsonerr)
 	}
+
 	return JsonFile
 
 }
 
-func (b *Bokoblin) type_mob() []string {
+func (b *Bokoblin) type_mob() *Mob {
+	var FinalResult *Mob
 	var result []string
 	for _, v := range b.Boko().Data {
 		if strings.Contains(v.Name, "fire") {
 			result = append(result, "https://botw-compendium.herokuapp.com/api/v2/entry/"+strconv.Itoa(v.ID))
 		}
 	}
-	return result
+	FinalResult = b.fusionnerFichiersJSON(result)
+	// fmt.Println(result)
+	// fmt.Println(FinalResult)
+	return FinalResult
+}
+
+func (b *Bokoblin) fusionnerFichiersJSON(urls []string) *Mob {
+	result := make(map[string]interface{})
+	for _, url := range urls {
+		resp, err := http.Get(url)
+		if err != nil {
+			return nil
+		}
+		defer resp.Body.Close()
+		var data map[string]interface{}
+		err = json.NewDecoder(resp.Body).Decode(&data)
+		if err != nil {
+			return nil
+		}
+		for key, value := range data {
+			result[key] = value
+		}
+		// fmt.Println(result)
+	}
+	bytesData, err := json.Marshal(result)
+	if err != nil {
+		panic(err)
+	}
+
+	finalResult := &Mob{}
+	json.Unmarshal(bytesData, &finalResult)
+	fmt.Println(finalResult)
+	return finalResult
 }
