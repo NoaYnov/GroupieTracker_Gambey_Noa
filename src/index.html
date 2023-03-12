@@ -28,12 +28,11 @@
 
     <div class="place">
         {{if eq .Capa "feu"}}
-            <h1>{{.Type.Data.Image}}</h1>
-             
+  
         {{else if eq .Capa "glace"}}
             <h1>{{.Capa}}</h1>
         {{else if eq .Capa "accueil"}}
-        {{range $v := .Bokob.Data}}
+        {{range $v := .Bokob.Monsters}}
         
         <div class="card">
             <div  class="title">
@@ -43,7 +42,7 @@
                 <img src={{$v.Image}} alt="" class="image_mob">
             </div>
             <div>
-                <h1>{{$v.Description}}</h1>
+                <h1>{{$v.Type}}</h1>
             </div>
             
         </div>
@@ -59,7 +58,7 @@
                 <img src={{$v.Image}} alt="" class="image_mob">
             </div>
             <div>
-                <h1>{{$v.Description}}</h1>
+                <h1>{{$v.Type}}</h1>
             </div>
             
         </div>
