@@ -28,11 +28,14 @@
 
     <div class="place">
         {{if eq .Capa "feu"}}
-  
+            <h1>{{.Capa}}</h1>
+            {{if eq .Monsters.Type "Fire"}}
+                <h1>{{.Monsters.Name}}</h1>
+            {{end}}
         {{else if eq .Capa "glace"}}
             <h1>{{.Capa}}</h1>
         {{else if eq .Capa "accueil"}}
-        {{range $v := .Bokob.Monsters}}
+        {{range $v := .Monsters}}
         
         <div class="card">
             <div  class="title">

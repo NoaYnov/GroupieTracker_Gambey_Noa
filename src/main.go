@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -20,36 +21,35 @@ type Monster struct {
 	Type            string
 }
 
-type Bokoblin struct {
+type MonsterRequest struct {
 	Monsters   []Monster `json:"data"`
-	Bokob      *Bokoblin
 	Formulaire string
 	Capa       string
-	Typ        *Bokoblin
+	Typ        string
 }
 
 func main() {
 
-	var b *Bokoblin
+	var b MonsterRequest
+	b.Init()
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 	http.HandleFunc("/", b.OpenPage)
 	http.ListenAndServe(":8080", nil)
-	// fmt.Println(b.type_mob())
 }
 
-func (b *Bokoblin) OpenPage(w http.ResponseWriter, r *http.Request) {
+func (b *MonsterRequest) OpenPage(w http.ResponseWriter, r *http.Request) {
 	tmp := template.Must(template.ParseFiles("index.html"))
-	details := Bokoblin{
-		Bokob:      b.Boko(),
+	details := MonsterRequest{
 		Formulaire: r.FormValue("nom"),
-		// Typ:        b.type_mob(),
-		Capa: r.FormValue("information"),
+		Capa:       r.FormValue("information"),
+		Monsters:   b.Monsters,
 	}
+	details.TypeMonsters()
 	tmp.Execute(w, details)
 }
 
-func (b *Bokoblin) Boko() *Bokoblin {
+func (b *MonsterRequest) Init() {
 	url := "https://botw-compendium.herokuapp.com/api/v2/category/monsters"
 
 	timeClient := http.Client{
@@ -70,21 +70,17 @@ func (b *Bokoblin) Boko() *Bokoblin {
 		fmt.Println(readErr)
 	}
 
-	JsonFile := &Bokoblin{}
-	Jsonerr := json.Unmarshal(body, &JsonFile)
+	Jsonerr := json.Unmarshal(body, &b)
 	if Jsonerr != nil {
 		fmt.Println(Jsonerr)
 	}
-
-	return JsonFile
-
 }
 
-// func (b *Bokoblin) type_mob() *Bokoblin {
-// 	for _, v := range b.Monsters {
-// 		if strings.Contains(v.Name, "fire") {
-// 			v.Type = "feu"
-// 		}
-// 	}
+func (b *MonsterRequest) TypeMonsters() {
+	for _, v := range b.Monsters {
+		if strings.Contains(v.Name, "fire") {
+			v.Type = "Fire"
 
-// }
+		}
+	}
+}
