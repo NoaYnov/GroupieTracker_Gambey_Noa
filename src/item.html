@@ -4,14 +4,166 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Items</title>
 </head>
 <body>
     <div class="hotbar">
-
+        <form method="post" >
+            <input type="hidden" name="information" value="hearty">
+            <button type="submit" name="hearty">Type Hearty</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="accueil">
+            <button type="submit" name="accueil">Accueil</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="silent">
+            <button type="submit" name="silent">Type Silent</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="mighty">
+            <button type="submit" name="mighty">Type Mighty</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="swift">
+            <button type="submit" name="swift">Type Swift</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="endura">
+            <button type="submit" name="endura">Type Endura</button>
+        </form>
     </div>
     <div class="place">
-        
+    {{if eq .Capa "hearty"}}
+        {{range $v := .Data}}
+            {{if eq $v.Type "hearty"}}
+
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+        {{end}}
+        {{end}}
+    
+        {{else if eq .Capa "silent"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "silent"}}
+                <div class="card">
+                    <div  class="title">
+                        <h1>{{$v.Name}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    
+                </div>
+        {{end}}
+        {{end}}
+
+        {{else if eq .Capa "swift"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "swift"}}
+                <div class="card">
+                    <div  class="title">
+                        <h1>{{$v.Name}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    
+                </div>
+        {{end}}
+        {{end}}
+
+        {{else if eq .Capa "endura"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "endura"}}
+                <div class="card">
+                    <div  class="title">
+                        <h1>{{$v.Name}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    
+                </div>
+        {{end}}
+        {{end}}
+
+        {{else if eq .Capa "mighty"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "mighty"}}
+                <div class="card">
+                    <div  class="title">
+                        <h1>{{$v.Name}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    
+                </div>
+        {{end}}
+        {{end}}
+
+
+        {{else if eq .Capa "accueil"}}
+        {{range $v := .Data}}
+
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+        {{end}}
+
+
+    {{else}}
+        {{range $v := .Data}}
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+        {{end}}
+        {{end}}
+    
+
+
     </div>
 
 

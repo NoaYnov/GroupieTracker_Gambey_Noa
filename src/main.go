@@ -19,7 +19,6 @@ type Monster struct {
 	Image           string   `json:"image"`
 	Name            string   `json:"name"`
 	Type            string
-	Type_bis        string
 }
 
 type MonsterRequest struct {
@@ -28,22 +27,154 @@ type MonsterRequest struct {
 	Capa       string
 }
 
-func main() {
+type Material struct {
+	Data []struct {
+		Category        string   `json:"category"`
+		CommonLocations []string `json:"common_locations"`
+		CookingEffect   string   `json:"cooking_effect"`
+		Description     string   `json:"description"`
+		HeartsRecovered float64  `json:"hearts_recovered"`
+		ID              int      `json:"id"`
+		Image           string   `json:"image"`
+		Name            string   `json:"name"`
+		Type            string
+	} `json:"data"`
+	Capa string
+}
+type Equipement struct {
+	Data []struct {
+		Attack          int      `json:"attack"`
+		Category        string   `json:"category"`
+		CommonLocations []string `json:"common_locations"`
+		Defense         int      `json:"defense"`
+		Description     string   `json:"description"`
+		ID              int      `json:"id"`
+		Image           string   `json:"image"`
+		Name            string   `json:"name"`
+		Type            string
+	} `json:"data"`
+	Capa string
+}
 
+func main() {
+	var e Equipement
 	var b MonsterRequest
-	b.Init()
+	var ma Material
+	b.InitMob()
+	ma.InitMat()
+	e.InitEquip()
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 	http.HandleFunc("/", OpenPageIndex)
-	http.HandleFunc("/mob", b.OpenPage)
+	http.HandleFunc("/mob", b.OpenPageMob)
+	http.HandleFunc("/item", ma.OpenPageItem)
+	http.HandleFunc("/equipement", e.OpenPageEquip)
 	http.ListenAndServe(":8080", nil)
 }
+
+func (e *Equipement) TypeEquipement() {
+	for i := 0; i < len(e.Data); i++ {
+		if strings.Contains(e.Data[i].Name, "shield") {
+			e.Data[i].Type = "shield"
+		}
+
+	}
+}
+
+func (e *Equipement) OpenPageEquip(w http.ResponseWriter, r *http.Request) {
+	tmp := template.Must(template.ParseFiles("Equipement.html"))
+	details := Equipement{
+		Data: e.Data,
+		Capa: r.FormValue("information"),
+	}
+	details.TypeEquipement()
+	tmp.Execute(w, details)
+}
+
+func (e *Equipement) InitEquip() {
+	url := "https://botw-compendium.herokuapp.com/api/v2/category/equipment"
+
+	timeClient := http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr := timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr := ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr := json.Unmarshal(body, &e)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+}
+
+func (ma *Material) OpenPageItem(w http.ResponseWriter, r *http.Request) {
+	tmp := template.Must(template.ParseFiles("item.html"))
+	details := Material{
+		Data: ma.Data,
+		Capa: r.FormValue("information"),
+	}
+	details.TypeItem()
+	tmp.Execute(w, details)
+}
+
 func OpenPageIndex(w http.ResponseWriter, r *http.Request) {
 	tmp := template.Must(template.ParseFiles("index.html"))
 	tmp.Execute(w, nil)
 }
+func (ma *Material) InitMat() {
+	url := "https://botw-compendium.herokuapp.com/api/v2/category/materials"
 
-func (b *MonsterRequest) OpenPage(w http.ResponseWriter, r *http.Request) {
+	timeClient := http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr := timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr := ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr := json.Unmarshal(body, &ma)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+}
+func (ma *Material) TypeItem() {
+	for i := 0; i < len(ma.Data); i++ {
+		if strings.Contains(ma.Data[i].Name, "hearty") {
+			ma.Data[i].Type = "hearty"
+		} else if strings.Contains(ma.Data[i].Name, "silent") {
+			ma.Data[i].Type = "silent"
+		} else if strings.Contains(ma.Data[i].Name, "mighty") {
+			ma.Data[i].Type = "mighty"
+		} else if strings.Contains(ma.Data[i].Name, "endura") {
+			ma.Data[i].Type = "endura"
+		} else if strings.Contains(ma.Data[i].Name, "swift") {
+			ma.Data[i].Type = "swift"
+		}
+	}
+}
+
+func (b *MonsterRequest) OpenPageMob(w http.ResponseWriter, r *http.Request) {
 	tmp := template.Must(template.ParseFiles("mob.html"))
 	details := MonsterRequest{
 		Formulaire: r.FormValue("nom"),
@@ -54,7 +185,7 @@ func (b *MonsterRequest) OpenPage(w http.ResponseWriter, r *http.Request) {
 	tmp.Execute(w, details)
 }
 
-func (b *MonsterRequest) Init() {
+func (b *MonsterRequest) InitMob() {
 	url := "https://botw-compendium.herokuapp.com/api/v2/category/monsters"
 
 	timeClient := http.Client{
