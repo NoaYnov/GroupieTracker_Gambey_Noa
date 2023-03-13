@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Mob</title>
+</head>
+<body>
+    <div class="hotbar">
+        <form method="post" >
+            <input type="hidden" name="information" value="feu">
+            <button type="submit" name="feu">Type Feu</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="glace">
+            <button type="submit" name="glace">Type Glace/Eau</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="accueil">
+            <button type="submit" name="accueil">Accueil</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="electrique">
+            <button type="submit" name="electrique">Type Electrique</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="cursed">
+            <button type="submit" name="cursed">Type Cursed</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="guardian">
+            <button type="submit" name="guardian">Type Guardian</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="stal">
+            <button type="submit" name="stal">Type Squelette</button>
+        </form>
+        
+
+        
+
+    </div>
+
+    <div class="place">
+        {{if eq .Capa "feu"}}
+            {{range $v := .Monsters}}
+                {{if eq $v.Type "fire"}}
+                <div class="card">
+                    <div  class="title">
+                        <h1>{{$v.Name}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    
+                </div>
+                {{end}}
+            {{end}}
+
+            {{else if eq .Capa "stal"}}
+            {{range $v := .Monsters}}
+            {{if eq $v.Type "stal"}}
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+            {{end}}
+        {{end}}
+
+
+
+        {{else if eq .Capa "glace"}}
+        {{range $v := .Monsters}}
+        {{if eq $v.Type "ice"}}
+        <div class="card">
+            <div  class="title">
+                <h1>{{$v.Name}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            
+        </div>
+        {{end}}
+    {{end}}
+ 
+        
+
+    {{else if eq .Capa "electrique"}}
+    {{range $v := .Monsters}}
+    {{if eq $v.Type "electric"}}
+    <div class="card">
+        <div  class="title">
+            <h1>{{$v.Name}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        
+    </div>
+    {{end}}
+{{end}}
+
+
+        {{else if eq .Capa "cursed"}}
+        {{range $v := .Monsters}}
+        {{if eq $v.Type "cursed"}}
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+        {{end}}
+    {{end}}
+
+        {{else if eq .Capa "guardian"}}
+        {{range $v := .Monsters}}
+        {{if eq $v.Type "guardian"}}
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+        {{end}}
+    {{end}}
+
+        {{else}}
+        {{range $v := .Monsters}}
+        
+        <div class="card">
+            <div  class="title">
+                <h1>{{$v.Name}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            
+        </div>
+        {{end}}
+        {{end}}
+    </div>
+
+    
+
+
+    
+</body>
+</html>
