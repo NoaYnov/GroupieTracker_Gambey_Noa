@@ -25,7 +25,6 @@ type MonsterRequest struct {
 	Monsters   []Monster `json:"data"`
 	Formulaire string
 	Capa       string
-	Typ        string
 }
 
 func main() {
@@ -75,12 +74,17 @@ func (b *MonsterRequest) Init() {
 		fmt.Println(Jsonerr)
 	}
 }
-
 func (b *MonsterRequest) TypeMonsters() {
-	for _, v := range b.Monsters {
-		if strings.Contains(v.Name, "fire") {
-			v.Type = "Fire"
-
+	for i := 0; i < len(b.Monsters); i++ {
+		if strings.Contains(b.Monsters[i].Name, "fire") || strings.Contains(b.Monsters[i].Name, "igneo") || strings.Contains(b.Monsters[i].Name, "meteo") {
+			b.Monsters[i].Type = "fire"
+		} else if strings.Contains(b.Monsters[i].Name, "ice") || strings.Contains(b.Monsters[i].Name, "snow") || strings.Contains(b.Monsters[i].Name, "frost") || strings.Contains(b.Monsters[i].Name, "blizz") {
+			b.Monsters[i].Type = "ice"
+		} else if strings.Contains(b.Monsters[i].Name, "electric") {
+			b.Monsters[i].Type = "electric"
+		} else if strings.Contains(b.Monsters[i].Name, "cursed") {
+			b.Monsters[i].Type = "cursed"
 		}
+
 	}
 }
