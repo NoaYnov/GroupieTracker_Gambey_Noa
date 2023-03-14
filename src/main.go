@@ -76,6 +76,12 @@ func (e *Equipement) TypeEquipement() {
 	for i := 0; i < len(e.Data); i++ {
 		if strings.Contains(e.Data[i].Name, "shield") {
 			e.Data[i].Type = "shield"
+		} else if strings.Contains(e.Data[i].Name, "bow") {
+			e.Data[i].Type = "bow"
+		} else if strings.Contains(e.Data[i].Name, "spear") {
+			e.Data[i].Type = "spear"
+		} else if strings.Contains(e.Data[i].Name, "arrow") {
+			e.Data[i].Type = "arrow"
 		}
 
 	}
