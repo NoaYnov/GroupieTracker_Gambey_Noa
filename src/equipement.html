@@ -15,8 +15,28 @@
             <button type="submit" name="shield">Type Shield</button>
         </form>
         <form method="post" >
-            <input type="hidden" name="information" value="bow">
-            <button type="submit" name="bow">Type Bow</button>
+            <input type="hidden" name="information" value="sword">
+            <button type="submit" name="sword">Type Sword</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="axe">
+            <button type="submit" name="axe">Type Axe</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="boomerang">
+            <button type="submit" name="boomerang">Type Bommerang</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="sword">
+            <button type="submit" name="sword">Type Sword</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="crusher">
+            <button type="submit" name="crusher">Type Crusher</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="rod">
+            <button type="submit" name="rod">Type Rod</button>
         </form>
         <form method="post" >
             <input type="hidden" name="information" value="arrow">
@@ -65,6 +85,75 @@
                     </div>
                 {{end}}
             {{end}}
+
+            {{else if eq .Capa "axe"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "axe"}}
+                    <div class="card">
+                        <div  class="title">
+                            <h1>{{$v.Name}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+
+            {{else if eq .Capa "crusher"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "crusher"}}
+                    <div class="card">
+                        <div  class="title">
+                            <h1>{{$v.Name}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+
+            {{else if eq .Capa "boomerang"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "boomerang"}}
+                    <div class="card">
+                        <div  class="title">
+                            <h1>{{$v.Name}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+
+            {{else if eq .Capa "rod"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "rod"}}
+                    <div class="card">
+                        <div  class="title">
+                            <h1>{{$v.Name}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
+
             {{else if eq .Capa "arrow"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "arrow"}}
@@ -99,6 +188,22 @@
                 {{end}}
             {{end}}
 
+            {{else if eq .Capa "sword"}}
+            {{range $v := .Data}}
+                {{if eq $v.Type "sword"}}
+                    <div class="card">
+                        <div  class="title">
+                            <h1>{{$v.Name}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                {{end}}
+            {{end}}
 
         {{else if eq .Capa "accueil"}}
         {{range $v := .Data}}

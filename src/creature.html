@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Creature</title>
+</head>
+<body>
+    <div class="hotbar">
+        <form method="post" >
+            <input type="hidden" name="information" value="food">
+            <button type="submit" name="food">Food</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="nonfood">
+            <button type="submit" name="nonfood">NonFood</button>
+        </form>
+    </div>
+    <div class="place">
+        {{if eq .Capa "food"}}
+        <div>
+            <form method="post">
+                <input type="hidden" name="informationbis" value="hearty">
+                <button type="submit" name="hearty">Type Hearty</button>
+            </form>
+        </div>
+
+        {{if eq .Capabis "hearty"}}
+        {{range $v := .Data.Food}}
+        {{if eq $v.Type "hearty"}}
+        <div class="card">
+            <div  class="title">
+                <h1>{{$v.Name}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+        {{end}}
+        {{end}}
+        {{else}}
+
+        {{range $v := .Data.Food}}
+        <div class="card">
+            <div  class="title">
+                <h1>{{$v.Name}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            
+        </div>
+        {{end}}
+        {{end}}
+        {{else if eq .Capa "nonfood"}}
+        {{range $v := .Data.NonFood}}
+        <div class="card">
+            <div  class="title">
+                <h1>{{$v.Name}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            
+        </div>
+        {{end}}
+        {{end}}
+        
+    </div>
+</body>
+</html>

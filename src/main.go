@@ -56,20 +56,100 @@ type Equipement struct {
 	Capa string
 }
 
+type Creature struct {
+	Data struct {
+		Food []struct {
+			Category        string   `json:"category"`
+			CommonLocations []string `json:"common_locations"`
+			CookingEffect   string   `json:"cooking_effect"`
+			Description     string   `json:"description"`
+			HeartsRecovered int      `json:"hearts_recovered"`
+			ID              int      `json:"id"`
+			Image           string   `json:"image"`
+			Name            string   `json:"name"`
+			Type            string
+		} `json:"food"`
+		NonFood []struct {
+			Category        string      `json:"category"`
+			CommonLocations []string    `json:"common_locations"`
+			Description     string      `json:"description"`
+			Drops           interface{} `json:"drops"`
+			ID              int         `json:"id"`
+			Image           string      `json:"image"`
+			Name            string      `json:"name"`
+			Type            string
+		} `json:"non_food"`
+	} `json:"data"`
+	Capa    string
+	Capabis string
+}
+
 func main() {
 	var e Equipement
 	var b MonsterRequest
 	var ma Material
+	var c Creature
 	b.InitMob()
 	ma.InitMat()
 	e.InitEquip()
+	c.InitCrea()
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 	http.HandleFunc("/", OpenPageIndex)
 	http.HandleFunc("/mob", b.OpenPageMob)
 	http.HandleFunc("/item", ma.OpenPageItem)
 	http.HandleFunc("/equipement", e.OpenPageEquip)
+	http.HandleFunc("/creature", c.OpenPageCrea)
 	http.ListenAndServe(":8080", nil)
+}
+
+func (c *Creature) OpenPageCrea(w http.ResponseWriter, r *http.Request) {
+	tmp := template.Must(template.ParseFiles("creature.html"))
+	details := Creature{
+		Data:    c.Data,
+		Capa:    r.FormValue("information"),
+		Capabis: r.FormValue("informationbis"),
+	}
+	details.TypeCreatureFood()
+	fmt.Println(details.Capabis)
+	tmp.Execute(w, details)
+}
+
+func (c *Creature) TypeCreatureFood() {
+	for i := 0; i < len(c.Data.Food); i++ {
+		if strings.Contains(c.Data.Food[i].Name, "hearty") {
+			c.Data.Food[i].Type = "hearty"
+		} else {
+			c.Data.Food[i].Type = "undefined"
+		}
+	}
+}
+
+func (c *Creature) InitCrea() {
+	url := "https://botw-compendium.herokuapp.com/api/v2/category/creatures"
+
+	timeClient := http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr := timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr := ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr := json.Unmarshal(body, &c)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
 }
 
 func (e *Equipement) TypeEquipement() {
@@ -78,17 +158,26 @@ func (e *Equipement) TypeEquipement() {
 			e.Data[i].Type = "shield"
 		} else if strings.Contains(e.Data[i].Name, "bow") {
 			e.Data[i].Type = "bow"
-		} else if strings.Contains(e.Data[i].Name, "spear") {
+		} else if strings.Contains(e.Data[i].Name, "spear") || strings.Contains(e.Data[i].Name, "harpoon") {
 			e.Data[i].Type = "spear"
 		} else if strings.Contains(e.Data[i].Name, "arrow") {
 			e.Data[i].Type = "arrow"
+		} else if strings.Contains(e.Data[i].Name, "sword") || strings.Contains(e.Data[i].Name, "blade") || strings.Contains(e.Data[i].Name, "cleaver") {
+			e.Data[i].Type = "sword"
+		} else if strings.Contains(e.Data[i].Name, "axe") {
+			e.Data[i].Type = "axe"
+		} else if strings.Contains(e.Data[i].Name, "boomerang") {
+			e.Data[i].Type = "boomerang"
+		} else if strings.Contains(e.Data[i].Name, "rod") {
+			e.Data[i].Type = "rod"
+		} else if strings.Contains(e.Data[i].Name, "crusher") {
+			e.Data[i].Type = "crusher"
 		}
-
 	}
 }
 
 func (e *Equipement) OpenPageEquip(w http.ResponseWriter, r *http.Request) {
-	tmp := template.Must(template.ParseFiles("Equipement.html"))
+	tmp := template.Must(template.ParseFiles("equipement.html"))
 	details := Equipement{
 		Data: e.Data,
 		Capa: r.FormValue("information"),
