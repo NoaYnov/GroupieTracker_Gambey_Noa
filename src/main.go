@@ -80,8 +80,7 @@ type Creature struct {
 			Type            string
 		} `json:"non_food"`
 	} `json:"data"`
-	Capa    string
-	Capabis string
+	Capa string
 }
 
 func main() {
@@ -106,12 +105,10 @@ func main() {
 func (c *Creature) OpenPageCrea(w http.ResponseWriter, r *http.Request) {
 	tmp := template.Must(template.ParseFiles("creature.html"))
 	details := Creature{
-		Data:    c.Data,
-		Capa:    r.FormValue("information"),
-		Capabis: r.FormValue("informationbis"),
+		Data: c.Data,
+		Capa: r.FormValue("information"),
 	}
 	details.TypeCreatureFood()
-	fmt.Println(details.Capabis)
 	tmp.Execute(w, details)
 }
 
