@@ -83,15 +83,31 @@ type Creature struct {
 	Capa string
 }
 
+type Treasure struct {
+	Data []struct {
+		Category        string   `json:"category"`
+		CommonLocations []string `json:"common_locations"`
+		Description     string   `json:"description"`
+		Drops           []string `json:"drops"`
+		ID              int      `json:"id"`
+		Image           string   `json:"image"`
+		Name            string   `json:"name"`
+		Type            string
+	} `json:"data"`
+	Capa string
+}
+
 func main() {
 	var e Equipement
 	var b MonsterRequest
 	var ma Material
 	var c Creature
+	var t Treasure
 	b.InitMob()
 	ma.InitMat()
 	e.InitEquip()
 	c.InitCrea()
+	t.InitTreasure()
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 	http.HandleFunc("/", OpenPageIndex)
@@ -99,7 +115,53 @@ func main() {
 	http.HandleFunc("/item", ma.OpenPageItem)
 	http.HandleFunc("/equipement", e.OpenPageEquip)
 	http.HandleFunc("/creature", c.OpenPageCrea)
+	http.HandleFunc("/treasure", t.OpenPageTrea)
 	http.ListenAndServe(":8080", nil)
+}
+
+func (t *Treasure) TypeTreasure() {
+	for i := 0; i < len(t.Data); i++ {
+		if strings.Contains(t.Data[i].Name, "") {
+			t.Data[i].Type = ""
+		}
+	}
+}
+
+func (t *Treasure) OpenPageTrea(w http.ResponseWriter, r *http.Request) {
+	tmp := template.Must(template.ParseFiles("treasure.html"))
+	details := Treasure{
+		Data: t.Data,
+		Capa: r.FormValue("information"),
+	}
+	details.TypeTreasure()
+	tmp.Execute(w, details)
+}
+
+func (t *Treasure) InitTreasure() {
+	url := "https://botw-compendium.herokuapp.com/api/v2/category/treasure"
+
+	timeClient := http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr := timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr := ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr := json.Unmarshal(body, &t)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
 }
 
 func (c *Creature) OpenPageCrea(w http.ResponseWriter, r *http.Request) {
@@ -108,16 +170,31 @@ func (c *Creature) OpenPageCrea(w http.ResponseWriter, r *http.Request) {
 		Data: c.Data,
 		Capa: r.FormValue("information"),
 	}
-	details.TypeCreatureFood()
+	details.TypeCreature()
+
 	tmp.Execute(w, details)
 }
 
-func (c *Creature) TypeCreatureFood() {
+func (c *Creature) TypeCreature() {
 	for i := 0; i < len(c.Data.Food); i++ {
 		if strings.Contains(c.Data.Food[i].Name, "hearty") {
 			c.Data.Food[i].Type = "hearty"
+		} else if strings.Contains(c.Data.Food[i].Name, "mighty") {
+			c.Data.Food[i].Type = "mighty"
 		} else {
 			c.Data.Food[i].Type = "undefined"
+		}
+	}
+	for i := 0; i < len(c.Data.NonFood); i++ {
+		if strings.Contains(c.Data.NonFood[i].Name, "horse") {
+			c.Data.NonFood[i].Type = "horse"
+		} else if strings.Contains(c.Data.NonFood[i].Name, "goat") {
+			c.Data.NonFood[i].Type = "goat"
+		} else if strings.Contains(c.Data.NonFood[i].Name, "sparrow") {
+			c.Data.NonFood[i].Type = "sparrow"
+		} else {
+
+			c.Data.NonFood[i].Type = "undefined"
 		}
 	}
 }

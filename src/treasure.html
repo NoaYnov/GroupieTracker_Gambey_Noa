@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Treasure</title>
+</head>
+<body>
+    <div class="hotbar">
+        <form method="post" >
+            <input type="hidden" name="information" value="accueil">
+            <button type="submit" name="accueil">Accueil</button>
+        </form>
+    </div>
+
+    <div class="place">
+        {{if eq .Capa "accueil"}}
+            {{range $v := .Data}}
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
+            </div>
+            {{end}}
+            {{end}}
+
+    </div>
+</body>
+</html>

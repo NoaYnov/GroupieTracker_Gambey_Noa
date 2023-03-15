@@ -13,68 +13,162 @@
             <input type="hidden" name="information" value="food">
             <button type="submit" name="food">Food</button>
         </form>
-        <form method="post" >
-            <input type="hidden" name="information" value="nonfood">
-            <button type="submit" name="nonfood">NonFood</button>
-        </form>
         <form method="post">
             <input type="hidden" name="information" value="hearty">
             <button type="submit" name="hearty">Type Hearty</button>
         </form>
+        <form method="post">
+            <input type="hidden" name="information" value="mighty">
+            <button type="submit" name="mighty">Type Mighty</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="nonfood">
+            <button type="submit" name="nonfood">Non Food</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="horse">
+            <button type="submit" name="horse">Horse</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="goat">
+            <button type="submit" name="goat">Goat</button>
+        </form>
+        <form method="post" >
+            <input type="hidden" name="information" value="sparrow">
+            <button type="submit" name="sparrow">Sparrow</button>
+        </form>
     </div>
-
     <div class="place">
-        {{if eq .Capa "food"}}
+    {{if eq .Capa "food"}}
+    {{range $v := .Data.Food}}
+    <div class="card">
+        <div  class="title">
+            <h1>{{$v.Name}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        
+    </div>
+    {{end}}
+
+    {{else if eq .Capa "hearty"}}
         {{range $v := .Data.Food}}
-        <div class="card">
-            <div  class="title">
-                <h1>{{$v.Name}}</h1>
+            {{if eq $v.Type "hearty"}}
+
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
             </div>
-            <div>
-                <img src={{$v.Image}} alt="" class="image_mob">
-            </div>
-            <div>
-                <h1>{{$v.Description}}</h1>
-            </div>
-            
-        </div>
+        {{end}}
         {{end}}
 
-
-        {{else if eq .Capa "nonfood"}}
+    {{else if eq .Capa "horse"}}
         {{range $v := .Data.NonFood}}
-        <div class="card">
-            <div  class="title">
-                <h1>{{$v.Name}}</h1>
+            {{if eq $v.Type "horse"}}
+
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
             </div>
-            <div>
-                <img src={{$v.Image}} alt="" class="image_mob">
-            </div>
-            <div>
-                <h1>{{$v.Description}}</h1>
-            </div>
-            
-        </div>
+        {{end}}
         {{end}}
 
-        {{else if eq .Capa "hearty"}}
+    {{else if eq .Capa "goat"}}
         {{range $v := .Data.NonFood}}
-        {{if eq $v.Type "hearty"}}
-        <div class="card">
-            <div  class="title">
-                <h1>{{$v.Name}}</h1>
+            {{if eq $v.Type "goat"}}
+
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
             </div>
-            <div>
-                <img src={{$v.Image}} alt="" class="image_mob">
+        {{end}}
+        {{end}}
+
+    {{else if eq .Capa "sparrow"}}
+        {{range $v := .Data.NonFood}}
+            {{if eq $v.Type "sparrow"}}
+
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                
             </div>
-            <div>
-                <h1>{{$v.Description}}</h1>
-            </div>
-            
+        {{end}}
+        {{end}}
+
+    {{else if eq .Capa "mighty"}}
+            {{range $v := .Data.Food}}
+                {{if eq $v.Type "mighty"}}
+
+                <div class="card">
+                    <div  class="title">
+                        <h1>{{$v.Name}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    
+                </div>
+        {{end}}
+        {{end}}
+
+    {{else if eq .Capa "nonfood"}}
+    {{range $v := .Data.NonFood}}
+    <div class="card">
+        <div  class="title">
+            <h1>{{$v.Name}}</h1>
         </div>
-        {{end}}
-        {{end}}
-        {{end}}
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        
+    </div>
+    {{end}}
+    {{end}}
+
+
+        
 
         
 
