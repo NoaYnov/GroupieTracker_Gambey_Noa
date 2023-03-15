@@ -8,7 +8,7 @@
 
     <title>Equipement</title>
 </head>
-<body>
+<body id="equip">
     <div class="hotbar">
         <form method="post" >
             <input type="hidden" name="information" value="shield">
@@ -206,6 +206,20 @@
             {{end}}
 
         {{else if eq .Capa "accueil"}}
+        {{range $v := .Data}}
+            <div class="card">
+                <div  class="title">
+                    <h1>{{$v.Name}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+            </div>
+        {{end}}
+        {{else}}
         {{range $v := .Data}}
             <div class="card">
                 <div  class="title">

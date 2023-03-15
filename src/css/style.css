@@ -10,12 +10,50 @@
 }
 body{
     font-family: 'the_wild_breath_of_zeldaRg';
-    background-image: url("img/bloodmoon.jpg");
-    background-size :100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     
 }
+
+#mob{
+    background-image: url("img/bloodmoon.jpg");
+    background-size :auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#item{
+    background-image: url("img/zora.png");
+    background-size :90%;
+    background-color: rgb(73, 69, 69);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+#equip{
+    background-image: url("img/goron.png");
+    background-size :90%;
+    background-color: rgb(73, 69, 69);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#crea{
+    background-image: url("img/zelda.png");
+    background-size :90%;
+    background-position: center;
+    background-color: rgb(73, 69, 69);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+#trea{
+    background-image: url("img/link.png");
+    background-size :90%;
+    background-position: center;
+    background-color: rgb(73, 69, 69);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 
 .image_mob{
     position: relative;

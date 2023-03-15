@@ -119,21 +119,12 @@ func main() {
 	http.ListenAndServe(":8080", nil)
 }
 
-func (t *Treasure) TypeTreasure() {
-	for i := 0; i < len(t.Data); i++ {
-		if strings.Contains(t.Data[i].Name, "") {
-			t.Data[i].Type = ""
-		}
-	}
-}
-
 func (t *Treasure) OpenPageTrea(w http.ResponseWriter, r *http.Request) {
 	tmp := template.Must(template.ParseFiles("treasure.html"))
 	details := Treasure{
 		Data: t.Data,
 		Capa: r.FormValue("information"),
 	}
-	details.TypeTreasure()
 	tmp.Execute(w, details)
 }
 

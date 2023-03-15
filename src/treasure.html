@@ -7,16 +7,8 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Treasure</title>
 </head>
-<body>
-    <div class="hotbar">
-        <form method="post" >
-            <input type="hidden" name="information" value="accueil">
-            <button type="submit" name="accueil">Accueil</button>
-        </form>
-    </div>
-
+<body id="trea">
     <div class="place">
-        {{if eq .Capa "accueil"}}
             {{range $v := .Data}}
             <div class="card">
                 <div  class="title">
@@ -31,8 +23,6 @@
                 
             </div>
             {{end}}
-            {{end}}
-
     </div>
 </body>
 </html>

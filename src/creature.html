@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <title>Creature</title>
 </head>
-<body>
+<body id="crea">
     <div class="hotbar">
         <form method="post" >
             <input type="hidden" name="information" value="food">
@@ -151,6 +151,21 @@
         {{end}}
 
     {{else if eq .Capa "nonfood"}}
+    {{range $v := .Data.NonFood}}
+    <div class="card">
+        <div  class="title">
+            <h1>{{$v.Name}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        
+    </div>
+    {{end}}
+    {{else}}
     {{range $v := .Data.NonFood}}
     <div class="card">
         <div  class="title">
