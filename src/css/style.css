@@ -28,6 +28,13 @@ body{
     background-attachment: fixed;
 }
 
+#logo{
+    width: auto;
+    height: 100px;
+    align-items: left;
+
+
+}
 
 #mob{
     background-image: url("img/bloodmoon.jpg");
@@ -125,7 +132,7 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 50px;
+    height: auto;
     background-color: #000000;
     z-index: 100;
     display: flex;
@@ -141,5 +148,10 @@ body{
     background-size :cover;
     background-repeat: no-repeat;
     border-top:none;
+    border-left:none;
+    border-right:none;
+    border-bottom: 3px solid black;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+
 }
 
