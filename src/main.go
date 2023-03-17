@@ -97,17 +97,27 @@ type Treasure struct {
 	Capa string
 }
 
+type Recherche struct {
+	Mob *MonsterRequest
+	Mat *Material
+	Equ *Equipement
+	Cre *Creature
+	Tre *Treasure
+}
+
 func main() {
 	var e Equipement
 	var b MonsterRequest
 	var ma Material
 	var c Creature
 	var t Treasure
+	var rech Recherche
 	b.InitMob()
 	ma.InitMat()
 	e.InitEquip()
 	c.InitCrea()
 	t.InitTreasure()
+
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 	http.HandleFunc("/", OpenPageIndex)
@@ -116,10 +126,152 @@ func main() {
 	http.HandleFunc("/equipement", e.OpenPageEquip)
 	http.HandleFunc("/creature", c.OpenPageCrea)
 	http.HandleFunc("/treasure", t.OpenPageTrea)
+	http.HandleFunc("/recherche", rech.OpenPageRecherche)
 	http.ListenAndServe(":8080", nil)
 }
 
+func (rech *Recherche) OpenPageRecherche(w http.ResponseWriter, r *http.Request) {
+	rech.InitRecherche()
+	tmp := template.Must(template.ParseFiles("recherche.html"))
+	details := Recherche{
+		Mob: rech.Mob,
+		Mat: rech.Mat,
+		Equ: rech.Equ,
+		Cre: rech.Cre,
+		Tre: rech.Tre,
+	}
+	tmp.Execute(w, details)
+}
+
+func (rech *Recherche) InitRecherche() {
+	url := "https://botw-compendium.herokuapp.com/api/v2/category/treasure"
+
+	timeClient := http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err := http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr := timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr := ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr := json.Unmarshal(body, &rech.Tre)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+
+	url = "https://botw-compendium.herokuapp.com/api/v2/category/creatures"
+
+	timeClient = http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err = http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr = timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr = ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr = json.Unmarshal(body, &rech.Cre)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+
+	url = "https://botw-compendium.herokuapp.com/api/v2/category/equipment"
+
+	timeClient = http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err = http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr = timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr = ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr = json.Unmarshal(body, &rech.Equ)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+
+	url = "https://botw-compendium.herokuapp.com/api/v2/category/materials"
+
+	timeClient = http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err = http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr = timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr = ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr = json.Unmarshal(body, &rech.Mat)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+
+	url = "https://botw-compendium.herokuapp.com/api/v2/category/monsters"
+
+	timeClient = http.Client{
+		Timeout: time.Second * 2,
+	}
+	req, err = http.NewRequest(http.MethodGet, url, nil)
+	if err != nil {
+		fmt.Println(err)
+	}
+	req.Header.Set("User-Agent", "random-user-agent")
+	res, getErr = timeClient.Do(req)
+	if getErr != nil {
+		fmt.Println(getErr)
+	}
+
+	body, readErr = ioutil.ReadAll(res.Body)
+	if readErr != nil {
+		fmt.Println(readErr)
+	}
+
+	Jsonerr = json.Unmarshal(body, &rech.Mob)
+	if Jsonerr != nil {
+		fmt.Println(Jsonerr)
+	}
+}
+
 func (t *Treasure) OpenPageTrea(w http.ResponseWriter, r *http.Request) {
+
 	tmp := template.Must(template.ParseFiles("treasure.html"))
 	details := Treasure{
 		Data: t.Data,

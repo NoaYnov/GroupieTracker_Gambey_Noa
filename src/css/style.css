@@ -1,4 +1,11 @@
+@font-face {
+    font-family: 'triforce';
+    src: url('font/triforce-webfont.woff2') format('woff2'),
+         url('font/triforce-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 
+}
 
 
 @font-face {
@@ -9,13 +16,22 @@
     font-style: normal;
 }
 body{
-    font-family: 'the_wild_breath_of_zeldaRg';
+    font-family: 'triforce';
     
 }
 
+#accueil{
+    background-image: url("img/accueil.jpg");
+    background-size :cover;
+    background-repeat: no-repeat;
+    color: white;
+    background-attachment: fixed;
+}
+
+
 #mob{
     background-image: url("img/bloodmoon.jpg");
-    background-size :auto;
+    background-size :cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
