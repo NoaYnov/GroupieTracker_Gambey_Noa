@@ -5,10 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="Script/script.js"></script>
     <title>Mob</title>
 </head>
+
+<script>
+    function openPopUp(element) {
+        element.nextElementSibling.style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
+    
+    function closePopUp(element) {
+        element.parentElement.parentElement.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+    
+</script>
+
+
+
+
 <body id="mob">
     <div class="hotbar">
+        <form method="post" >
+            <input type="hidden" name="information" value="accueil">
+            <button type="submit" name="accueil">Tous</button>
+        </form>
         <form method="post" >
             <input type="hidden" name="information" value="feu">
             <button type="submit" name="feu">Type Feu</button>
@@ -16,10 +38,6 @@
         <form method="post" >
             <input type="hidden" name="information" value="glace">
             <button type="submit" name="glace">Type Glace/Eau</button>
-        </form>
-        <form method="post" >
-            <input type="hidden" name="information" value="accueil">
-            <button type="submit" name="accueil">Accueil</button>
         </form>
         <form method="post" >
             <input type="hidden" name="information" value="electrique">
@@ -47,7 +65,7 @@
         {{if eq .Capa "feu"}}
             {{range $v := .Monsters}}
                 {{if eq $v.Type "fire"}}
-                <div class="card">
+                <div class="card" onclick="openPopUp(this)">
                     <div  class="title">
                         <h1>{{$v.Name}}</h1>
                     </div>
