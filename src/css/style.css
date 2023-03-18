@@ -163,3 +163,72 @@ body{
 
 
 
+
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.log {
+	width: 80px;
+	margin-right: 20px;
+}
+
+.title {
+	font-size: 2.5em;
+	font-weight: bold;
+	margin: 0;
+	letter-spacing: 0.1em;
+	color: #ffffff;
+    
+
+}
+
+.main {
+	text-align: center;
+
+}
+
+.message {
+	color: #ffffff;
+	font-size: 1.2em;
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+
+.return {
+	color: #ffffff;
+	font-size: 1.2em;
+	line-height: 1.5;
+}
+
+.link {
+	color: #ffffff;
+	text-decoration: none;
+	border-bottom: 2px solid #d8a33e;
+	transition: border-bottom 0.2s ease;
+}
+
+.link:hover {
+	border-bottom-color: #ffffff;
+}
+#erreur{
+    background-image: url("img/404.jpg");
+    background-size :cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}

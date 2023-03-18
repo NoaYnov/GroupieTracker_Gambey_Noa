@@ -117,7 +117,6 @@ func main() {
 	e.InitEquip()
 	c.InitCrea()
 	t.InitTreasure()
-
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
 	http.HandleFunc("/", OpenPageIndex)
@@ -127,7 +126,12 @@ func main() {
 	http.HandleFunc("/creature", c.OpenPageCrea)
 	http.HandleFunc("/treasure", t.OpenPageTrea)
 	http.HandleFunc("/recherche", rech.OpenPageRecherche)
+	http.HandleFunc("/404", NotFoundHandler)
 	http.ListenAndServe(":8080", nil)
+}
+
+func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "404.html")
 }
 
 func (rech *Recherche) OpenPageRecherche(w http.ResponseWriter, r *http.Request) {
@@ -441,6 +445,10 @@ func (ma *Material) OpenPageItem(w http.ResponseWriter, r *http.Request) {
 }
 
 func OpenPageIndex(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		http.Redirect(w, r, "/404", http.StatusSeeOther)
+		return
+	}
 	tmp := template.Must(template.ParseFiles("index.html"))
 	tmp.Execute(w, nil)
 }
