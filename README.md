@@ -11,4 +11,10 @@ Ce site a pour objetcif de permettre a son utilisateur de parcourir tout ce qui 
 
 Dans celui ci vous retrouverez également des filtres pour vous faciliter la navigation
 
-## Les Points Techniques
+## Les Points Techniques :
+
+-	API : https://botw-compendium.herokuapp.com/api
+-	Front: HTML
+-	Front: CSS
+-	Front: JS
+-	Back: Golang
