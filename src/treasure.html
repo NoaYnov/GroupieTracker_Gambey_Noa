@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="icon" href="css/img/Polaris.png" type="image/x-icon">
+    <script src="Script/script.js"></script>
     <title>Treasure</title>
 </head>
 <body id="trea">
@@ -15,7 +17,7 @@
     </div>
     <div class="place">
             {{range $v := .Data}}
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -26,6 +28,30 @@
                     <h1>{{$v.Description}}</h1>
                 </div>
                 
+            </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
             </div>
             {{end}}
     </div>

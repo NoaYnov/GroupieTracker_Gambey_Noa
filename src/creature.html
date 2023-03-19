@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="css/img/Cinetis.png" type="image/x-icon">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script src="Script/script.js"></script>
     <title>Creature</title>
 </head>
 <body id="crea">
@@ -44,7 +46,7 @@
     <div class="place">
     {{if eq .Capa "food"}}
     {{range $v := .Data.Food}}
-    <div class="card">
+    <div class="card" onclick="OpenModal(this)">
         <div  class="title">
             <h1>{{$v.Name}}</h1>
         </div>
@@ -56,13 +58,37 @@
         </div>
         
     </div>
+    <div id="modal">
+        <div onclick="CloseModal(this)">
+            <strong>
+            <h1>&times;</h1>
+            </strong>
+        </div>
+        <div  class="title">
+            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Common Location :{{$v.CommonLocations}}</h1>
+        </div>
+        <div>
+            <h1>Common Effect : {{$v.CookingEffect}}</h1>
+        </div>
+        <br>
+    </div>
     {{end}}
 
     {{else if eq .Capa "hearty"}}
         {{range $v := .Data.Food}}
             {{if eq $v.Type "hearty"}}
 
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -73,6 +99,30 @@
                     <h1>{{$v.Description}}</h1>
                 </div>
                 
+            </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <div>
+                    <h1>Common Effect : {{$v.CookingEffect}}</h1>
+                </div>
+                <br>
             </div>
         {{end}}
         {{end}}
@@ -81,7 +131,7 @@
         {{range $v := .Data.NonFood}}
             {{if eq $v.Type "horse"}}
 
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -92,6 +142,30 @@
                     <h1>{{$v.Description}}</h1>
                 </div>
                 
+            </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
             </div>
         {{end}}
         {{end}}
@@ -100,7 +174,7 @@
         {{range $v := .Data.NonFood}}
             {{if eq $v.Type "goat"}}
 
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -111,6 +185,30 @@
                     <h1>{{$v.Description}}</h1>
                 </div>
                 
+            </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
             </div>
         {{end}}
         {{end}}
@@ -119,7 +217,7 @@
         {{range $v := .Data.NonFood}}
             {{if eq $v.Type "sparrow"}}
 
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -131,6 +229,30 @@
                 </div>
                 
             </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
+            </div>
         {{end}}
         {{end}}
 
@@ -138,7 +260,7 @@
             {{range $v := .Data.Food}}
                 {{if eq $v.Type "mighty"}}
 
-                <div class="card">
+                <div class="card" onclick="OpenModal(this)">
                     <div  class="title">
                         <h1>{{$v.Name}}</h1>
                     </div>
@@ -150,12 +272,37 @@
                     </div>
                     
                 </div>
+                <div id="modal">
+                    <div onclick="CloseModal(this)">
+                        <strong>
+                        <h1>&times;</h1>
+                        </strong>
+                    </div>
+                    <div  class="title">
+                        <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    <br>
+                    <div>
+                        <h1>Common Location :{{$v.CommonLocations}}</h1>
+                    </div>
+                    <div>
+                        <h1>Common Effect : {{$v.CookingEffect}}</h1>
+                    </div>
+                    <br>
+                </div>
+                
         {{end}}
         {{end}}
 
     {{else if eq .Capa "nonfood"}}
     {{range $v := .Data.NonFood}}
-    <div class="card">
+    <div class="card" onclick="OpenModal(this)">
         <div  class="title">
             <h1>{{$v.Name}}</h1>
         </div>
@@ -167,10 +314,34 @@
         </div>
         
     </div>
+    <div id="modal">
+        <div onclick="CloseModal(this)">
+            <strong>
+            <h1>&times;</h1>
+            </strong>
+        </div>
+        <div  class="title">
+            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Common Location :{{$v.CommonLocations}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Drops : {{$v.Drops}}</h1>
+        </div>
+    </div>
     {{end}}
     {{else}}
     {{range $v := .Data.NonFood}}
-    <div class="card">
+    <div class="card" onclick="OpenModal(this)">
         <div  class="title">
             <h1>{{$v.Name}}</h1>
         </div>
@@ -181,6 +352,30 @@
             <h1>{{$v.Description}}</h1>
         </div>
         
+    </div>
+    <div id="modal">
+        <div onclick="CloseModal(this)">
+            <strong>
+            <h1>&times;</h1>
+            </strong>
+        </div>
+        <div  class="title">
+            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Common Location :{{$v.CommonLocations}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Drops : {{$v.Drops}}</h1>
+        </div>
     </div>
     {{end}}
     {{end}}

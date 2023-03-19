@@ -6,21 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <script src="Script/script.js"></script>
+    <link rel="icon" href="css/img/Amiibo.png" type="image/x-icon">
     <title>Mob</title>
 </head>
 
-<script>
-    function openPopUp(element) {
-        element.nextElementSibling.style.display = "block";
-        document.body.style.overflow = "hidden";
-    }
-    
-    function closePopUp(element) {
-        element.parentElement.parentElement.style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-    
-</script>
 
 
 
@@ -64,11 +53,12 @@
 
     </div>
 
+
     <div class="place">
         {{if eq .Capa "feu"}}
             {{range $v := .Monsters}}
                 {{if eq $v.Type "fire"}}
-                <div class="card" onclick="openPopUp(this)">
+                <div class="card" onclick="OpenModal(this)">
                     <div  class="title">
                         <h1>{{$v.Name}}</h1>
                     </div>
@@ -78,15 +68,42 @@
                     <div>
                         <h1>{{$v.Description}}</h1>
                     </div>
-                    
+ 
                 </div>
+                <div id="modal">
+                    <div onclick="CloseModal(this)">
+                        <strong>
+                        <h1>&times;</h1>
+                        </strong>
+                    </div>
+                    <div  class="title">
+                        <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                    </div>
+                    <div>
+                        <img src={{$v.Image}} alt="" class="image_mob">
+                    </div>
+                    <div>
+                        <h1>{{$v.Description}}</h1>
+                    </div>
+                    <br>
+                    <div>
+                        <h1>Common Location :{{$v.CommonLocations}}</h1>
+                    </div>
+                    <br>
+                    <div>
+                        <h1>Drops : {{$v.Drops}}</h1>
+                    </div>
+                </div>
+
+                
+
                 {{end}}
             {{end}}
 
             {{else if eq .Capa "stal"}}
             {{range $v := .Monsters}}
             {{if eq $v.Type "stal"}}
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -98,6 +115,30 @@
                 </div>
                 
             </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
+            </div>
             {{end}}
         {{end}}
 
@@ -106,7 +147,7 @@
         {{else if eq .Capa "glace"}}
         {{range $v := .Monsters}}
         {{if eq $v.Type "ice"}}
-        <div class="card">
+        <div class="card" onclick="OpenModal(this)">
             <div  class="title">
                 <h1>{{$v.Name}}</h1>
             </div>
@@ -118,6 +159,30 @@
             </div>
             
         </div>
+        <div id="modal">
+            <div onclick="CloseModal(this)">
+                <strong>
+                <h1>&times;</h1>
+                </strong>
+            </div>
+            <div  class="title">
+                <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            <br>
+            <div>
+                <h1>Common Location :{{$v.CommonLocations}}</h1>
+            </div>
+            <br>
+            <div>
+                <h1>Drops : {{$v.Drops}}</h1>
+            </div>
+        </div>
         {{end}}
     {{end}}
  
@@ -126,7 +191,7 @@
     {{else if eq .Capa "electrique"}}
     {{range $v := .Monsters}}
     {{if eq $v.Type "electric"}}
-    <div class="card">
+    <div class="card" onclick="OpenModal(this)">
         <div  class="title">
             <h1>{{$v.Name}}</h1>
         </div>
@@ -138,6 +203,30 @@
         </div>
         
     </div>
+    <div id="modal">
+        <div onclick="CloseModal(this)">
+            <strong>
+            <h1>&times;</h1>
+            </strong>
+        </div>
+        <div  class="title">
+            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+        </div>
+        <div>
+            <img src={{$v.Image}} alt="" class="image_mob">
+        </div>
+        <div>
+            <h1>{{$v.Description}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Common Location :{{$v.CommonLocations}}</h1>
+        </div>
+        <br>
+        <div>
+            <h1>Drops : {{$v.Drops}}</h1>
+        </div>
+    </div>
     {{end}}
 {{end}}
 
@@ -145,7 +234,7 @@
         {{else if eq .Capa "cursed"}}
         {{range $v := .Monsters}}
         {{if eq $v.Type "cursed"}}
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -156,6 +245,30 @@
                     <h1>{{$v.Description}}</h1>
                 </div>
                 
+            </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
             </div>
         {{end}}
     {{end}}
@@ -163,7 +276,7 @@
         {{else if eq .Capa "guardian"}}
         {{range $v := .Monsters}}
         {{if eq $v.Type "guardian"}}
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -175,13 +288,39 @@
                 </div>
                 
             </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Drops : {{$v.Drops}}</h1>
+                </div>
+            </div>
         {{end}}
     {{end}}
 
         {{else}}
         {{range $v := .Monsters}}
-        
-        <div class="card">
+        <div class="card" onclick="OpenModal(this)">
+    
+
+
             <div  class="title">
                 <h1>{{$v.Name}}</h1>
             </div>
@@ -191,15 +330,36 @@
             <div>
                 <h1>{{$v.Description}}</h1>
             </div>
-            
         </div>
+
+        <div id="modal">
+            <div onclick="CloseModal(this)">
+                <strong>
+                <h1>&times;</h1>
+                </strong>
+            </div>
+            <div  class="title">
+                <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+            </div>
+            <div>
+                <img src={{$v.Image}} alt="" class="image_mob">
+            </div>
+            <div>
+                <h1>{{$v.Description}}</h1>
+            </div>
+            <br>
+            <div>
+                <h1>Common Location :{{$v.CommonLocations}}</h1>
+            </div>
+            <br>
+            <div>
+                <h1>Drops : {{$v.Drops}}</h1>
+            </div>
+        </div>
+        
         {{end}}
         {{end}}
+        
     </div>
-
-    
-
-
-    
 </body>
 </html>

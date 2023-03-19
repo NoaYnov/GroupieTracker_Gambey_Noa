@@ -296,10 +296,36 @@ a:hover{
     border-radius: 8px;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
     transition: all 0.2s ease-in-out;
-  }
+}
   
-  .zelda-btn:hover {
+.zelda-btn:hover {
     background-color: #c2dcff;
     color: #1d2631;
     cursor: pointer;
-  }
+}
+
+#modal{
+    border: 3px solid #ffffff;
+    z-index: 100;
+    border-radius: auto;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    position: fixed;
+    border-radius: 20px;
+    margin: 20px;
+    width: 400px;
+    height: auto;
+    background-image: url("img/motif.png");
+    align-items: center;
+    font-size: 50%;
+    text-align: center;
+    color : #ffffff;
+    display: none;
+    overflow: hidden;
+    justify-content: center ;
+    align-items: center;
+    top: 300px;
+    left: 35%;
+
+    
+}
+

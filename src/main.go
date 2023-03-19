@@ -119,6 +119,7 @@ func main() {
 	t.InitTreasure()
 	fs := http.FileServer(http.Dir("css"))
 	http.Handle("/css/", http.StripPrefix("/css/", fs))
+	http.Handle("/Script/", http.StripPrefix("/Script/", http.FileServer(http.Dir("Script"))))
 	http.HandleFunc("/", OpenPageIndex)
 	http.HandleFunc("/mob", b.OpenPageMob)
 	http.HandleFunc("/item", ma.OpenPageItem)
@@ -541,7 +542,7 @@ func (b *MonsterRequest) TypeMonsters() {
 			b.Monsters[i].Type = "electric"
 		} else if strings.Contains(b.Monsters[i].Name, "cursed") {
 			b.Monsters[i].Type = "cursed"
-		} else if strings.Contains(b.Monsters[i].Name, "guardian") {
+		} else if strings.Contains(b.Monsters[i].Name, "guardian") || strings.Contains(b.Monsters[i].Name, "sentry") {
 			b.Monsters[i].Type = "guardian"
 		} else if strings.Contains(b.Monsters[i].Name, "stal") {
 			b.Monsters[i].Type = "stal"

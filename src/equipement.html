@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="icon" href="css/img/bombe_carré.png" type="image/x-icon">
+    <script src="Script/script.js"></script>
 
     <title>Equipement</title>
 </head>
@@ -59,7 +61,7 @@
         {{if eq .Capa "shield"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "shield"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -68,6 +70,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -76,7 +105,7 @@
             {{else if eq .Capa "bow"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "bow"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -85,6 +114,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -93,7 +149,7 @@
             {{else if eq .Capa "axe"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "axe"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -102,6 +158,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -110,7 +193,7 @@
             {{else if eq .Capa "crusher"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "crusher"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -119,6 +202,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -127,7 +237,7 @@
             {{else if eq .Capa "boomerang"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "boomerang"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -136,6 +246,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -144,7 +281,7 @@
             {{else if eq .Capa "rod"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "rod"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -153,6 +290,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -161,7 +325,7 @@
             {{else if eq .Capa "arrow"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "arrow"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -170,6 +334,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -178,7 +369,7 @@
             {{else if eq .Capa "spear"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "spear"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -187,6 +378,33 @@
                         </div>
                         <div>
                             <h1>{{$v.Description}}</h1>
+                        </div>
+                    </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
                         </div>
                     </div>
                 {{end}}
@@ -195,7 +413,7 @@
             {{else if eq .Capa "sword"}}
             {{range $v := .Data}}
                 {{if eq $v.Type "sword"}}
-                    <div class="card">
+                    <div class="card" onclick="OpenModal(this)">
                         <div  class="title">
                             <h1>{{$v.Name}}</h1>
                         </div>
@@ -206,12 +424,39 @@
                             <h1>{{$v.Description}}</h1>
                         </div>
                     </div>
+                    <div id="modal">
+                        <div onclick="CloseModal(this)">
+                            <strong>
+                            <h1>&times;</h1>
+                            </strong>
+                        </div>
+                        <div  class="title">
+                            <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                        </div>
+                        <div>
+                            <img src={{$v.Image}} alt="" class="image_mob">
+                        </div>
+                        <div>
+                            <h1>{{$v.Description}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Common Location :{{$v.CommonLocations}}</h1>
+                        </div>
+                        <br>
+                        <div>
+                            <h1>Attack : {{$v.Attack}}</h1>
+                        </div>
+                        <div>
+                            <h1>Defense : {{$v.Defense}}</h1>
+                        </div>
+                    </div>
                 {{end}}
             {{end}}
 
         {{else if eq .Capa "accueil"}}
         {{range $v := .Data}}
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -222,10 +467,37 @@
                     <h1>{{$v.Description}}</h1>
                 </div>
             </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Attack : {{$v.Attack}}</h1>
+                </div>
+                <div>
+                    <h1>Defense : {{$v.Defense}}</h1>
+                </div>
+            </div>
         {{end}}
         {{else}}
         {{range $v := .Data}}
-            <div class="card">
+            <div class="card" onclick="OpenModal(this)">
                 <div  class="title">
                     <h1>{{$v.Name}}</h1>
                 </div>
@@ -234,6 +506,33 @@
                 </div>
                 <div>
                     <h1>{{$v.Description}}</h1>
+                </div>
+            </div>
+            <div id="modal">
+                <div onclick="CloseModal(this)">
+                    <strong>
+                    <h1>&times;</h1>
+                    </strong>
+                </div>
+                <div  class="title">
+                    <h1>{{$v.Name}}   :  {{$v.Category}}</h1>
+                </div>
+                <div>
+                    <img src={{$v.Image}} alt="" class="image_mob">
+                </div>
+                <div>
+                    <h1>{{$v.Description}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Common Location :{{$v.CommonLocations}}</h1>
+                </div>
+                <br>
+                <div>
+                    <h1>Attack : {{$v.Attack}}</h1>
+                </div>
+                <div>
+                    <h1>Defense : {{$v.Defense}}</h1>
                 </div>
             </div>
         {{end}}
