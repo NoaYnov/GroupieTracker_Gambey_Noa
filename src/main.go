@@ -125,7 +125,7 @@ func main() {
 	http.HandleFunc("/equipement", e.OpenPageEquip)
 	http.HandleFunc("/creature", c.OpenPageCrea)
 	http.HandleFunc("/treasure", t.OpenPageTrea)
-	http.HandleFunc("/recherche", rech.OpenPageRecherche)
+	http.HandleFunc("/tout", rech.OpenPageRecherche)
 	http.HandleFunc("/404", NotFoundHandler)
 	http.ListenAndServe(":8080", nil)
 }

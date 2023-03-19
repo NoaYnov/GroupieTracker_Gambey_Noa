@@ -26,6 +26,9 @@ body{
     background-repeat: no-repeat;
     color: white;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    
 }
 
 #logo{
@@ -38,6 +41,16 @@ body{
     left: 0;
 
 
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    transition: all 0.5s ease;
+}
+
+a:hover{
+    color: #3cb1d4;
 }
 
 .hotbar{
@@ -54,20 +67,30 @@ body{
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    align-content: center;
+    align-content: left;
     border-bottom-right-radius: 20px ;
     border-bottom-left-radius:20px ;
     border: black 3px solid;
-    background-image: url("img/herbe.jpg");
-    background-size :cover;
-    background-repeat: no-repeat;
+    background-image: url("img/motif.png");
+    background-size :auto;
+    background-repeat:repeat;
     border-top:none;
     border-left:none;
     border-right:none;
     border-bottom: 3px solid black;
     box-shadow: 0 1px 2px rgba(0,0,0,.05);
     font-size: large;
+    color: #ffffff;
+    overflow:hidden;
 
+}
+
+#block{
+    background-image: url("img/motif.png");
+    background-color: #4e4e4e;
+    background-size :cover;
+    height: 80px;
+    width: 100%;
 }
 
 
@@ -187,12 +210,12 @@ body{
 	margin-right: 20px;
 }
 
-.title {
+.titl {
 	font-size: 2.5em;
 	font-weight: bold;
 	margin: 0;
 	letter-spacing: 0.1em;
-	color: #ffffff;
+	color: #016cf8;
     
 
 }
@@ -203,22 +226,22 @@ body{
 }
 
 .message {
-	color: #ffffff;
+	color: #016cf8;
 	font-size: 1.2em;
 	line-height: 1.5;
 	margin-bottom: 20px;
 }
 
 .return {
-	color: #ffffff;
+	color: #016cf8;
 	font-size: 1.2em;
 	line-height: 1.5;
 }
 
 .link {
-	color: #ffffff;
+	color: #016cf8;
 	text-decoration: none;
-	border-bottom: 2px solid #d8a33e;
+	border-bottom: 2px solid #016cf8;
 	transition: border-bottom 0.2s ease;
 }
 
@@ -232,3 +255,25 @@ body{
     background-attachment: fixed;
 
 }
+
+
+.zelda-btn {
+    background-color: #1d2631;
+    border: 2px solid #c2dcff;
+    color: #c2dcff;
+    font-size: 24px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'triforce', sans-serif;
+    border-radius: 8px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .zelda-btn:hover {
+    background-color: #c2dcff;
+    color: #1d2631;
+    cursor: pointer;
+  }
