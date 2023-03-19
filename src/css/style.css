@@ -25,6 +25,7 @@ body{
     background-size :cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    overflow: hidden;
     
 }
 
@@ -32,6 +33,7 @@ body{
     display: flex;
     flex-direction: column;
     color: white;
+    overflow: hidden;
 
 }
 
@@ -58,6 +60,7 @@ a:hover{
 }
 
 .hotbar{
+    z-index: 2;
     padding-left: 50;
     position: fixed;
     top: 0;
@@ -88,7 +91,21 @@ a:hover{
 
 }
 
-.bloc{
+.bloc1{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top : 150px;
+    
+
+    
+    
+
+}
+
+.bloc2{
     background-image: url("img/motif.png");
     background-repeat: repeat;
     background-color: #4e4e4e;
@@ -96,13 +113,11 @@ a:hover{
     height: 600px;
     width: 600px;
     color: #ffffff;
-    position: relative;
-    top: 150px;
-    left: 40%;
     border: #016cf8 2px solid;
     border-radius: 10%;
 
 }
+
 
 
 #mob{
