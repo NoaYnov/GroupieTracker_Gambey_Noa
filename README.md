@@ -18,3 +18,9 @@ Dans celui ci vous retrouverez également des filtres pour vous faciliter la nav
 -	Front: CSS
 -	Front: JS
 -	Back: Golang
+
+## Utilisation :
+
+-	Il vous suffit de lancer le "main.exe"(en cas de probleme, lancer grace a la commande "go run main.go").
+
+-	Et avoir le Port 8080 de libre.
