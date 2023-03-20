@@ -20,14 +20,7 @@ body{
     
 }
 
-#accueilbody{
-    background-image: url("img/accueil.jpg");
-    background-size :cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow: hidden;
-    
-}
+
 
 #accueil{
     display: flex;
@@ -110,11 +103,12 @@ a:hover{
     background-repeat: repeat;
     background-color: #4e4e4e;
     background-size :auto;
-    height: 600px;
+    height: auto;
     width: 600px;
     color: #ffffff;
     border: #016cf8 2px solid;
     border-radius: 10%;
+    padding: auto;
 
 }
 
@@ -125,6 +119,14 @@ a:hover{
     background-size :cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+}
+
+#accueilbody{
+    background-image: url("img/accueil.jpg");
+    background-size :cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
 }
 
 #item{
@@ -323,9 +325,13 @@ a:hover{
     overflow: hidden;
     justify-content: center ;
     align-items: center;
-    top: 300px;
+    top: 50%px;
     left: 35%;
 
     
 }
 
+
+#index{
+    padding: 30px;
+}

@@ -16,7 +16,7 @@ Dans celui ci vous retrouverez également des filtres pour vous faciliter la nav
 -	API : https://botw-compendium.herokuapp.com/api
 -	Front: HTML
 -	Front: CSS
--	Front: JS
+-	Back: JS
 -	Back: Golang
 
 ## Utilisation :
